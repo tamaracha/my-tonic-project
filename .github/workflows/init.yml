@@ -1,0 +1,15 @@
+name: Initialize project
+on: create
+jobs:
+  build:
+    name: "Remove unnecessary files"
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+      - name: Delete files
+        run: |
+          rm -rf .editorconfig .github
+      - name: Git Commit/Push Changes
+        uses: actions-x/commit@v1
